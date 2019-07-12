@@ -15,16 +15,21 @@ import { ApiUrl } from '../supports/ApiURl';
 // apabila berhasil login, taruh data di global state, dan username di localStorage
 
 class Login extends Component {
+    state = {
+        error : ''
+    }
+
+
     onBtnLoginClick = () => {
         var name = this.refs.username.value
         var pass = this.refs.password.value
         if(name === '' || pass ===''){
-            alert('Semua Form Harus Terisi')
+            this.setState({error : 'Semua Form Harus diisi'})
         }else{
             Axios.get(ApiUrl + '/users?username=' + name + '&password=' + pass)
             .then((res) => {
                 if(res.data.length === 0){
-                    alert('Password or Username Invalid')
+                    this.setState({error : 'Password or Username Invalid'})
                 }else{
                     this.props.OnRegisterSuccess(res.data[0])
                     localStorage.setItem('terserah' , name)
@@ -49,10 +54,22 @@ class Login extends Component {
                     <Paper className='p-5'>
                     <h1> LOGIN </h1>
                     <input ref='username' className='form-control mt-3' type='text' placeholder='username' />
-                    <input ref='password' className='form-control mt-3' type='text' placeholder='password' />
-                    <input onClick={this.onBtnLoginClick} type='button' className='btn btn-primary mt-5' value='Login' />
+                    <input ref='password' className='form-control mt-3' type='password' placeholder='password' />
+                    <input onClick={this.onBtnLoginClick} type='button' className='btn btn-primary mt-3' value='Login' />
+                    {
+                        // error
+                        // this.renderErrorMessege()
+                        this.state.error === '' 
+                        ?
+                        null 
+                        :
+                        <div className='alert alert-danger mt-5'>
+                            {this.state.error} 
+                            <span onClick={() =>this.setState({error : ''})} style={{fontWeight:"bolder" , cursor : 'pointer',float : 'right'}}> x </span> 
+                        </div>
+                    }
                     </Paper>
-                    <p className='mt-3' style={{fontStyle:'italic'}}>
+                    <p className='mt-3' style={{fontStyle:'italic',color:'white'}}>
                         Belum Punya Akun ? 
                         <Link to='/register'>
                         <span style={{color:'blue',fontWeight :"bolder" , textDecoration:'underline',cursor:'pointer'}}> 

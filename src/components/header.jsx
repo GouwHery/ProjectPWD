@@ -14,6 +14,7 @@ import {
 import {connect} from 'react-redux'
 import {onLogout} from './../redux/actions'
 import { Link } from 'react-router-dom'
+import MovieList from './../pages/movieList'
 
 class Example extends React.Component {
   state = {
@@ -26,9 +27,10 @@ class Example extends React.Component {
     });
   }
   onBtnLogoutClick = () => {
-    this.props.onLogout()
-    localStorage.removeItem('terserah')
-  }
+      this.props.onLogout()
+      localStorage.removeItem('terserah')
+    }
+  
   render() {
     return (
       <div>
@@ -53,13 +55,21 @@ class Example extends React.Component {
                   <DropdownItem><Link to='/manage'>
                     Manage Movie</Link>
                   </DropdownItem>
-                  <DropdownItem>
-                    
+                  <DropdownItem><Link to='/changepass'>
+                    Change Password
+                    </Link>
                   </DropdownItem>
-                  <DropdownItem divider />
+                  <DropdownItem>
+                    <Link to='/history'>
+                    History Transaksi
+                    </Link>
+                  </DropdownItem>
+                  <DropdownItem divider /><div><Link to='/'>
                   <DropdownItem onClick={this.onBtnLogoutClick}>
                     Logout
                   </DropdownItem>
+                  </Link>
+                  </div>
                 </DropdownMenu>
               </UncontrolledDropdown>
               :

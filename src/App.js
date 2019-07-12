@@ -5,12 +5,14 @@ import Bebas from './pages/admin/manageMovie'
 import MovieDetail from './pages/movieDetail'
 import Register from './pages/register'
 import SeatRes from './pages/seatReservation'
+import history from './pages/historyTransaction'
 import PageNotFound from './pages/PageNotFound'
 
 import { Route ,Switch } from 'react-router-dom'
 
 import './App.css';
 import Login from './pages/login';
+import changepass from './pages/changepass'
 import Axios from 'axios';
 import { ApiUrl } from './supports/ApiURl'
 import {OnRegisterSuccess} from './redux/actions'
@@ -43,7 +45,9 @@ class App extends React.Component {
           <Route path='/movie-detail' component={MovieDetail} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
+          <Route path='/changepass' component={changepass} />
           <Route path='/order-seat' component={SeatRes} />
+          <Route path='/history' component={history} />
           <Route path='*' component={PageNotFound} />
         </Switch>
       </div>

@@ -4,6 +4,7 @@ import PageNotFound from './../pages/PageNotFound'
 import Axios from 'axios';
 import {ApiUrl} from './../supports/ApiURl'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class SeatRes extends Component {
     state ={
@@ -61,7 +62,6 @@ class SeatRes extends Component {
                 Axios.patch(ApiUrl + '/users/' + this.props.id,{
                     transaction : transaction
                 } ).then((res) => {
-                    alert('masuk')
                     this.setState({booked : [...this.state.booked, ...this.state.chosen],
                                 chosen : []
                     })
@@ -168,7 +168,8 @@ class SeatRes extends Component {
                     Total Rp. {Numeral(this.state.chosen.length * 35000).format(0,0) }
                     </div>
                 }
-                <div className='mt-4'><input type='button' className='btn btn-success' value='Add To Cart' style={{width:'100%',height:'30px',border:'1px solid black',textAlign:'center',fontWeight:'bolder'}} onClick={() => this.btnButtonBuy()}/></div>
+                <div className='mt-4'><input type='button' className='btn btn-danger' value='Booked' style={{width:'100%',height:'30px',border:'1px solid black',textAlign:'center',fontWeight:'bolder'}} onClick={() => this.btnButtonBuy()}/></div>
+                <Link to='/history'><div className='mt-4  mt-3'><input type='button' className='btn btn-success' value='History Transaction' style={{width:'100%',height:'30px',border:'1px solid black',textAlign:'center',fontWeight:'bolder'}}/></div></Link>
 
             </div>
         )

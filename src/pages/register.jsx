@@ -78,7 +78,7 @@ class Register extends Component {
                     <h1> REGISTER </h1>
                     <input ref='username' className='form-control mt-3' type='text' placeholder='username' />
                     <input ref='password' className='form-control mt-3' type='password' placeholder='password' />
-                    <input ref='confirm' className='form-control mt-3' type='text' placeholder='confirm password' />
+                    <input ref='confirm' className='form-control mt-3' type='password' placeholder='confirm password' />
                     {
                         // error
                         // this.renderErrorMessege()
@@ -101,7 +101,7 @@ class Register extends Component {
                    
                     
                     </Paper>
-                    <p className='mt-3' style={{fontStyle:'italic'}}>
+                    <p className='mt-3' style={{fontStyle:'italic',color:'white'}}>
                         Sudah Punya Akun ? 
                         <Link to='/login'>
                         <span style={{color:'blue',fontWeight :"bolder" , textDecoration:'underline',cursor:'pointer'}}> 
